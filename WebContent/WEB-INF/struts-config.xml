@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+ 
+<struts-config>
+	<data-sources>
+	</data-sources>
+	<form-beans>
+		<form-bean name="AssignTaskForm" type="resource.forms.teamlead.AssignTaskForm" />
+		<form-bean name="AllotTaskForm" type="resource.forms.teamlead.AllotTaskForm" />
+		<form-bean name="ProcessStatusForm" type="resource.forms.teamlead.ProcessStatusForm" />
+		<form-bean name="LeaveApplyForm" type="resource.forms.teamlead.LeaveApplyForm" />
+		<form-bean name="HomeForm" type="resource.forms.teamlead.HomeForm" />
+	</form-beans>
+	<global-forwards>
+	</global-forwards>
+
+	<action-mappings>
+	<action input="/Menu.jsp" name="HomeForm" path="/Login" validate = "false" scope="session" type="resource.actions.teamlead.HomeAction">
+            <forward name="success" path="/Home.jsp" />
+            <forward name="failure" path="/failure.jsp" />
+        </action>
+		<!-- Search Result Action -->
+		<action input="/FatcaSearch.jsp" name="FatcaSearchForm" path="/FatcaSearchAction" scope="session" type="com.jpmorgan.cc.actions.clientmanager.FatcaSearchAction">
+		<forward name="success" path="/FatcaSearch.jsp" />
+		</action>
+		
+		<action input="/AssignTask.jsp" name="AssignTaskForm" path="/AssignTaskDataAction" scope="session" type="resource.actions.teamlead.AssignTaskDataAction" validate = "false">
+		<forward name="success" path="/AssignTask.jsp" />
+		</action>
+		
+			<action input="/ProcessStatus.jsp" name="ProcessStatusForm" path="/ProcessStatusDataAction" validate = "false" scope="session" type="resource.actions.teamlead.ProcessStatusDataAction">
+            <forward name="success" path="/ProcessStatus.jsp" />
+            <forward name="failure" path="/failure.jsp" />
+        </action>
+		
+		<action input="/AllotTask.jsp" name="AllotTaskForm" path="/AllotTaskDataAction" scope="session" type="resource.actions.teamlead.AllotTaskDataAction" validate = "false">
+		<forward name="success" path="/AllotTask.jsp" />
+		</action>
+		
+		<action input="/Login.jsp" path="/LoginAction" scope="session" type="resource.actions.teamlead.LoginAction" validate = "false">
+		<forward name="success" path="/AllotTask.jsp" />
+		<forward name="teamLeadSuccess" path="/AllotTask.jsp" />
+		<forward name="resourceSucess" path="/AssignTaskDataAction.do" />
+		</action>
+		
+		<action name="ProcessStatusForm" path="/ProcessStatusAction" scope="session" type="resource.actions.teamlead.ProcessStatusAction" validate="false">
+            <forward name="success" path="/ProcessStatus.jsp" />
+            <forward name="failure" path="/failure.jsp" />
+            </action>
+            
+            <action name="AssignTaskForm" path="/AssignTaskSubAction" scope="session" type="resource.actions.teamlead.AssignTaskSubAction" validate="false">
+            <forward name="success" path="/AssignTask.jsp" />
+            <forward name="failure" path="/failure.jsp" />
+            </action>
+		
+		   <action name="AllotTaskForm" path="/AllotTaskAction" scope="session" type="resource.actions.teamlead.AllotTaskAction" validate="false">
+            <forward name="success" path="/AllotTask.jsp" />
+            <forward name="failure" path="/failure.jsp" />
+            </action>
+            
+            <action name="HomeForm" input="/Home.jsp"  path="/HomeAction" scope="session" type="resource.actions.teamlead.HomeAction" validate="false">
+            <forward name="success" path="/Home.jsp" />
+            <forward name="failure" path="/failure.jsp" />
+            </action>
+		
+		 <action input="/LeaveApply.jsp" name="LeaveApplyForm" path="/LeaveApplyDataAction" validate = "false" scope="session" type="resource.actions.teamlead.LeaveApplyDataAction">
+            <forward name="success" path="/LeaveApply.jsp" />
+            <forward name="failure" path="/failure.jsp" />
+        </action>
+        
+        <action name="LeaveApplyForm" path="/LeaveApplyAction" scope="session" type="resource.actions.teamlead.LeaveApplyAction" validate="false">
+            <forward name="success" path="/LeaveApply.jsp" />
+            <forward name="failure" path="/failure.jsp" />
+            </action>
+            
+	</action-mappings>
+	<controller>
+	</controller>
+</struts-config>
